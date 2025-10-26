@@ -1,9 +1,19 @@
 # Feature Specification: Add Simple Car Race
 
-**Feature Branch**: `001-add-car-race`  
-**Created**: 2025-10-26  
-**Status**: Draft  
+**Feature Branch**: `001-add-car-race`
+**Created**: 2025-10-26
+**Status**: Draft
 **Input**: User description: "Add A simple car race in the exlsting client module"
+
+## Clarifications
+
+### Session 2025-10-26
+
+- Q: What are the key attributes for the Car entity (e.g., position, speed, appearance)? → A: position (Vector3), speed (Float), color (String)
+- Q: How many cars should participate in the race? → A: 3 cars
+- Q: What should happen when multiple cars reach the finish line simultaneously? → A: All cars win (tie)
+- Q: What is the maximum speed a car can reach? → A: 10 units/second
+- Q: What is the track length (distance from start to finish)? → A: 1000 units
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -54,7 +64,7 @@ As a user, I want to see when the race ends so that I know the outcome of my per
 
 ### Edge Cases
 
-- What happens when multiple cars reach the finish line simultaneously?
+- When multiple cars reach the finish line simultaneously, all cars win (tie)
 - How does system handle rapid key presses during movement?
 - What happens if the user navigates away during an active race?
 
@@ -62,7 +72,7 @@ As a user, I want to see when the race ends so that I know the outcome of my per
 
 ### Functional Requirements
 
-- **FR-001**: System MUST display a race track with multiple cars
+- **FR-001**: System MUST display a race track with 3 cars
 - **FR-002**: System MUST allow users to start a race via a button or key press
 - **FR-003**: System MUST enable car movement using keyboard controls (left/right arrows)
 - **FR-004**: System MUST prevent cars from moving outside track boundaries
@@ -72,9 +82,9 @@ As a user, I want to see when the race ends so that I know the outcome of my per
 
 ### Key Entities *(include if feature involves data)*
 
-- **Car**: Represents a racing vehicle with position, speed, and visual appearance
+- **Car**: Represents a racing vehicle with position (Vector3), speed (Float, max 10 units/second), and color (String)
 - **Race**: Represents the current race state including track, cars, and status
-- **Track**: Represents the racing environment with boundaries and finish line
+- **Track**: Represents the racing environment with boundaries, finish line at 1000 units, and width constraints
 
 ## Success Criteria *(mandatory)*
 
