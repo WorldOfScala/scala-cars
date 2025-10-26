@@ -9,7 +9,7 @@ object Router:
   def uiRoute(segments: String*) = segments.mkString(s"/$uiBase/", "/", "")
   private val externalUrlBus     = EventBus[String]()
   val writer                     = externalUrlBus.writer
-  def apply() =
+  def apply()                    =
     mainTag(
       linkHandler,
       routes(
@@ -27,7 +27,11 @@ object Router:
               },
               path("profile") {
                 profile.ProfilePage()
-              })
+              },
+              path("race") {
+                race.RacePage()
+              }
+            )
           },
           noneMatched {
             div("404 Not Found")

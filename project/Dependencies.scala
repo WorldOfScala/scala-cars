@@ -26,6 +26,7 @@ object Dependencies {
     val zioMock               = "1.0.0-RC12"
     val zioPrelude            = "1.0.0-RC36"
     val zioTestContainers     = "0.10.0"
+    val threeScalaJS          = "0.0.7"
   }
 
   private val configDependencies = Seq(
@@ -100,7 +101,8 @@ object Dependencies {
       "dev.cheleb" %%% "laminar-form-derivation-ui5" % Versions.laminarFormDerivation,
       // pull tapir-sttp-client and zio-tapir
       "dev.cheleb"    %%% "zio-tapir-laminar" % Versions.zioLaminarTapir,
-      "io.frontroute" %%% "frontroute"        % Versions.frontroute
+      "io.frontroute" %%% "frontroute"        % Versions.frontroute,
+      "dev.cheleb"    %%% "threesjs"          % Versions.threeScalaJS
     )
 
   val clientAndServerLibraries = Seq(

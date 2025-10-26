@@ -32,6 +32,9 @@ object Header:
           Icon(_.name := IconName.home, cls := "pad-10"),
           href := Router.uiRoute()
         ),
+        _.slots.menuItems := Seq(
+          a("Race", href := Router.uiRoute("race"))
+        ),
         _.primaryTitle       := "Scala Cars",
         _.secondaryTitle     := "Great Scala Cars",
         _.notificationsCount := "2+",
@@ -80,7 +83,7 @@ object Header:
     UList(
       _.separators := ListSeparator.None,
       _.item(
-        _.icon             := IconName.settings,
+        _.icon := IconName.settings,
         a("Settings", href := Router.uiRoute("profile"), title := s" Logged in as ${userToken.email}")
       )
         .amend(

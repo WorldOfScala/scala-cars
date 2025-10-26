@@ -106,3 +106,50 @@ ui5-input[type="Number"] {
 .srf-invalid {
   border: 1px solid red;
 }
+
+.race-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.race-ui {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.start-button,
+.restart-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.start-button:hover,
+.restart-button:hover {
+  background-color: #0056b3;
+}
+
+.race-status {
+  font-size: 24px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.race-complete {
+  text-align: center;
+}
+
+.race-complete h2 {
+  color: #28a745;
+  margin-bottom: 20px;
+}
