@@ -21,7 +21,7 @@ The following dependencies have been added to `project/Dependencies.scala`:
 ```scala
 val threeScalaJS = "0.0.7"
 // In clientLibraryDependencies:
-"dev.cheleb" %%% "three-scalajs" % Versions.threeScalaJS
+"dev.cheleb" %%% "threesjs" % Versions.threeScalaJS
 ```
 
 ## Implementation Steps
