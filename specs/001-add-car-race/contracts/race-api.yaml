@@ -1,0 +1,262 @@
+openapi: 3.0.3
+info:
+  title: Car Race Game API
+  description: Client-side API contracts for the car racing game feature
+  version: 1.0.0
+  contact:
+    name: Scala Cars Development Team
+
+servers:
+  - url: 'http://localhost:8000'
+    description: Local development server
+
+paths:
+  /api/race/start:
+    post:
+      summary: Start a new race
+      description: Initialize a new racing session with specified parameters
+      operationId: startRace
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RaceConfig'
+      responses:
+        '200':
+          description: Race started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Race'
+        '400':
+          description: Invalid race configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/race/{raceId}/status:
+    get:
+      summary: Get current race status
+      description: Retrieve the current state of an active race
+      operationId: getRaceStatus
+      parameters:
+        - name: raceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Race status retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Race'
+        '404':
+          description: Race not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/race/{raceId}/input:
+    post:
+      summary: Submit player input
+      description: Send player control inputs to the race engine
+      operationId: submitInput
+      parameters:
+        - name: raceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InputState'
+      responses:
+        '200':
+          description: Input processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Race'
+        '404':
+          description: Race not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    RaceConfig:
+      type: object
+      required:
+        - trackId
+        - carCount
+      properties:
+        trackId:
+          type: string
+          description: Identifier for the race track
+          example: "track-basic"
+        carCount:
+          type: integer
+          minimum: 1
+          maximum: 8
+          description: Number of cars in the race
+          example: 4
+        playerColor:
+          type: string
+          format: hex-color
+          description: Hex color code for player car
+          example: "#ff0000"
+
+    Race:
+      type: object
+      required:
+        - id
+        - status
+        - cars
+        - track
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique race identifier
+        status:
+          $ref: '#/components/schemas/RaceStatus'
+        cars:
+          type: array
+          items:
+            $ref: '#/components/schemas/Car'
+        track:
+          $ref: '#/components/schemas/Track'
+        startTime:
+          type: integer
+          format: int64
+          description: Unix timestamp when race started
+        duration:
+          type: integer
+          format: int64
+          description: Race duration in milliseconds
+
+    RaceStatus:
+      type: string
+      enum:
+        - WAITING
+        - RACING
+        - COMPLETED
+        - PAUSED
+      description: Current state of the race
+
+    Car:
+      type: object
+      required:
+        - id
+        - position
+        - color
+      properties:
+        id:
+          type: string
+          description: Unique car identifier
+        position:
+          $ref: '#/components/schemas/Vector3'
+        velocity:
+          $ref: '#/components/schemas/Vector3'
+        rotation:
+          type: number
+          format: float
+          description: Rotation in radians
+        color:
+          type: string
+          format: hex-color
+          description: Car color
+        isPlayer:
+          type: boolean
+          description: Whether this is the player car
+          default: false
+
+    Track:
+      type: object
+      required:
+        - width
+        - length
+        - boundaries
+        - finishLine
+      properties:
+        width:
+          type: number
+          format: float
+          description: Track width in world units
+        length:
+          type: number
+          format: float
+          description: Track length from start to finish
+        boundaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vector3'
+          description: Points defining track boundaries
+        finishLine:
+          $ref: '#/components/schemas/Vector3'
+
+    Vector3:
+      type: object
+      required:
+        - x
+        - y
+        - z
+      properties:
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+        z:
+          type: number
+          format: float
+      description: 3D vector coordinates
+
+    InputState:
+      type: object
+      properties:
+        left:
+          type: boolean
+          description: Left movement input
+          default: false
+        right:
+          type: boolean
+          description: Right movement input
+          default: false
+        accelerate:
+          type: boolean
+          description: Acceleration input
+          default: false
+        brake:
+          type: boolean
+          description: Braking input
+          default: false
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: object
+          description: Additional error details
