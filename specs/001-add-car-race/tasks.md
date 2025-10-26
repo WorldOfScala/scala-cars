@@ -25,10 +25,10 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create race package structure in modules/client/src/main/scala/org/worldofscala/app/race/
-- [ ] T002 Create test package structure in modules/client/src/test/scala/org/worldofscala/app/race/
-- [ ] T003 [P] Verify ThreeScalaJS dependency in project/Dependencies.scala
-- [ ] T004 [P] Update Router.scala to include race route
+- [x] T001 Create race package structure in modules/client/src/main/scala/org/worldofscala/app/race/
+- [x] T002 Create test package structure in modules/client/src/test/scala/org/worldofscala/app/race/
+- [x] T003 [P] Verify ThreeScalaJS dependency in project/Dependencies.scala
+- [x] T004 [P] Update Router.scala to include race route
 
 ---
 
