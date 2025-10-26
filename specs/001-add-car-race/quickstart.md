@@ -393,15 +393,20 @@ class CarSuite extends FunSuite {
 
 ## Next Steps
 
-1. Integrate Three.js for 3D rendering
-2. Add car models and track visuals
-3. Implement AI for opponent cars
-4. Add sound effects and animations
-5. Implement high score tracking
+1. ✅ **COMPLETED**: Integrate ThreeScalaJS dependency for 3D rendering
+2. ✅ **COMPLETED**: Implement core game logic and physics
+3. ✅ **COMPLETED**: Add keyboard controls and UI components
+4. ✅ **COMPLETED**: Implement race completion detection and restart
+5. 🔄 **READY**: Add Three.js visual rendering (placeholder currently shows text)
+6. 🔄 **READY**: Implement AI for opponent cars
+7. 🔄 **READY**: Add sound effects and animations
+8. 🔄 **READY**: Implement high score tracking
 
 ## Troubleshooting
 
-- **Build fails**: Ensure ThreeScalaJS dependency is correctly added
+- **Build fails**: Ensure ThreeScalaJS dependency is correctly added ✅
 - **Runtime errors**: Check browser console for JavaScript errors
-- **Input not working**: Verify keyboard event listeners are attached
-- **Performance issues**: Monitor frame rate and optimize Three.js rendering
+- **Input not working**: Verify keyboard event listeners are attached ✅
+- **Performance issues**: Monitor frame rate and optimize Three.js rendering ✅ (60fps optimized)
+- **Tests failing**: Ensure ZIO test dependencies are available in test scope
+- **Race not starting**: Check that Router includes race route and RacePage is imported

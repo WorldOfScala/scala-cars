@@ -1,26 +1,41 @@
 package org.worldofscala.app.race
 
+/**
+ * Represents a racing vehicle with position, movement, and visual properties.
+ * Handles physics calculations for car movement and collision detection.
+ */
 case class Car(
-  id: String,
-  position: Vector3,
-  velocity: Vector3 = Vector3.zero,
-  rotation: Double = 0.0,
-  color: String,
-  isPlayer: Boolean = false
+  id: String,                       // Unique identifier for the car
+  position: Vector3,                // Current 3D position
+  velocity: Vector3 = Vector3.zero, // Current movement vector
+  rotation: Double = 0.0,           // Rotation around Y-axis (radians)
+  color: String,                    // Hex color code for visual representation
+  isPlayer: Boolean = false         // Whether this is the player-controlled car
 ) {
+
+  /**
+   * Updates car position and physics based on input and time delta. Applies
+   * acceleration, steering, and boundary constraints.
+   */
   def move(deltaTime: Double, input: InputState, track: Track): Car = {
+    // Calculate acceleration based on input
     val acceleration = if (input.accelerate) 10.0 else (if (input.brake) -5.0 else 0.0)
     val turnSpeed    = if (input.left) -2.0 else (if (input.right) 2.0 else 0.0)
 
+    // Update velocity (only forward/backward movement)
     val newVelocity = velocity.copy(
       x = velocity.x + acceleration * deltaTime,
       z = velocity.z
     )
 
+    // Update rotation based on steering input
     val newRotation = rotation + turnSpeed * deltaTime
+
+    // Calculate movement direction and new position
     val direction   = Vector3(math.cos(newRotation), 0, math.sin(newRotation))
     val newPosition = position + (direction * newVelocity.x * deltaTime)
 
+    // Apply track boundary constraints
     val boundedPosition = track.constrainToBounds(newPosition)
 
     copy(

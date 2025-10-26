@@ -124,11 +124,11 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T032 [P] Add comprehensive unit tests for all components in modules/client/src/test/scala/org/worldofscala/app/race/
-- [ ] T033 Code cleanup and documentation updates
-- [ ] T034 Performance optimization for 60fps rendering
-- [ ] T035 Run quickstart.md validation and update if needed
-- [ ] T036 Add error handling for edge cases (rapid key presses, navigation during race)
+- [x] T032 [P] Add comprehensive unit tests for all components in modules/client/src/test/scala/org/worldofscala/app/race/
+- [x] T033 Code cleanup and documentation updates
+- [x] T034 Performance optimization for 60fps rendering
+- [x] T035 Run quickstart.md validation and update if needed
+- [x] T036 Add error handling for edge cases (rapid key presses, navigation during race)
 
 ---
 
