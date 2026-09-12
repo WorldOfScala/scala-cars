@@ -9,7 +9,7 @@ import Dependencies._
 //
 import DeploymentSettings._
 
-val scala3 = "3.7.3"
+val scala3 = "3.9.0"
 
 name := "Scala Cars"
 
